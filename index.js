@@ -5,6 +5,8 @@ const path = require("path");
 
 const app = express();
 
+let subscribers = []
+
 // Set static path
 app.use(express.static(path.join(__dirname, "client")));
 
@@ -25,10 +27,18 @@ app.post("/subscribe", (req, res) => {
   // Get pushSubscription object
   const subscription = req.body;
 
+  if (subscribers.indexOf(subscription) == -1) {
+    subscribers.push(subscription)
+  }
   // Send 201 - resource created
   res.status(201).json({});
 
   // Create payload
+  
+});
+
+
+app.post("/sendMessage",(req, res) => {
   const payload = JSON.stringify({ 
     title: "Push Test From Seabook",
     body: "Notified by Seabook!",
@@ -36,10 +46,13 @@ app.post("/subscribe", (req, res) => {
   });
 
   // Pass object into sendNotification
-  webpush
+
+  for (subscription of subscribers) {
+    webpush
     .sendNotification(subscription, payload)
     .catch(err => console.error(err));
-});
+  }
+})
 
 const port = 5000;
 
