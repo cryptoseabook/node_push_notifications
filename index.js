@@ -27,7 +27,10 @@ app.post("/api/subscribe", (req, res) => {
   // Get pushSubscription object
   const subscription = req.body;
 
+  console.log(subscription)
+
   if (subscribers.indexOf(subscription) == -1) {
+    console.log(subscription, 'added')
     subscribers.push(subscription)
   }
   // Send 201 - resource created
