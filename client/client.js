@@ -11,8 +11,25 @@ $(document).ready(function() {
     $('#subscribe').click(function() {
       subscribe()
     })
+
+    $('#send').click(function() {
+      send()
+    })
   }
 })
+
+async function send() {
+  console.log("Sending ....")
+
+  await fetch("/sendMessage", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    }
+  });
+
+  console.log("Sent...");
+}
 
 async function subscribe() {
   console.log("Registering Push...");
