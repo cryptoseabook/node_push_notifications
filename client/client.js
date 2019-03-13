@@ -21,7 +21,7 @@ $(document).ready(function() {
 async function send() {
   console.log("Sending ....")
 
-  await fetch("/sendMessage", {
+  await fetch("/api/sendMessage", {
     method: "POST",
     headers: {
       "content-type": "application/json"
@@ -38,7 +38,7 @@ async function subscribe() {
     applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
   });
 
-  await fetch("/subscribe", {
+  await fetch("/api/subscribe", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {

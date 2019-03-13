@@ -23,7 +23,7 @@ webpush.setVapidDetails(
 );
 
 // Subscribe Route
-app.post("/subscribe", (req, res) => {
+app.post("/api/subscribe", (req, res) => {
   // Get pushSubscription object
   const subscription = req.body;
 
@@ -38,7 +38,7 @@ app.post("/subscribe", (req, res) => {
 });
 
 
-app.post("/sendMessage",(req, res) => {
+app.post("/api/sendMessage",(req, res) => {
   const payload = JSON.stringify({ 
     title: "Push Test From Seabook",
     body: "Notified by Seabook!",
